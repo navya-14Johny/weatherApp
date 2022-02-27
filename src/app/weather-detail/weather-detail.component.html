@@ -1,0 +1,31 @@
+<div id="content"class="text-center">
+    <h1>Welcome to Weather Application</h1>
+    <div class="row selectDiv mt-5">
+        <div class="col-lg-12">            
+            <form [formGroup]="weatherForm" (ngSubmit)="getWeatherData()">
+                <div class="row">
+                    <div class="col-lg-6">                        
+                        <select class="form-control " formControlName="location">
+                            <option value="">please select</option>
+                            <ng-container *ngFor = 'let item of locationData'><option value="{{item.country}}">{{item.country}}</option></ng-container>
+                        </select>
+                    </div>
+                    <div class="col-lg-6">
+                        <button class="btn btn-primary submitBtn" type="submit">Submit</button>
+                    </div> 
+                </div>
+            </form>            
+        </div>        
+    </div>
+    <div class="weatherDiv mt-5">
+        <h3 class="pt-3 mb-3" *ngIf='!this.currentLocation'>weather Deatils</h3>
+        <h3 class="pt-3 mb-3" *ngIf='this.currentLocation'>Current Location Details</h3>
+        <div class="weathermain">
+            <div class= "weatherRow rowOne">{{weatherData.temp_celsious}}°c</div>
+            <div class= "weatherRow rowTwo">{{weatherData.temp_min}}°c / {{weatherData.temp_max}}°c</div>
+            <div class= "weatherRow rowThree">Feels like : {{weatherData.feels_like}}°c</div>
+            <div class= "weatherRow rowFour">{{weatherData.name}}</div>
+            <div class= "weatherRow rowFive">Humidity : {{weatherData.humidity}} %</div>
+        </div>
+    </div>
+</div>
